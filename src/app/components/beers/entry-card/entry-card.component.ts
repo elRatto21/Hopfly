@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular'
 import { Entry } from 'src/app/models/entry.model';
 import { IonModal } from '@ionic/angular';
 import { ImageService } from 'src/app/services/image.service';
+import { EntryService } from 'src/app/services/entry.service';
 
 @Component({
   selector: 'app-entry-card',
@@ -19,7 +20,7 @@ export class EntryCardComponent implements OnInit {
 
   imageString = null;
 
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService, private entryService: EntryService) { }
 
   async ngOnInit() {
     if (this.entry.image_id != undefined) { this.imageString = await this.imageService.getImage(this.entry.image_id) };
@@ -28,5 +29,19 @@ export class EntryCardComponent implements OnInit {
   dismiss() {
     this.modal.dismiss(null, 'cancel');
   }
+
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+    },
+    {
+      text: 'Delete',
+      role: 'confirm',
+      handler: () => {
+        this.entryService.deleteById(this.entry.id)
+      },
+    },
+  ];
 
 }
