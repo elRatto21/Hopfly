@@ -6,6 +6,6 @@
     </div>
   </ion-list-header>
   <ion-item-sliding *ngFor="let entry of entries">
-    <app-entry-card [entry]="entry"></app-entry-card>
+    <app-entry-card [entry]="entry" [brand]="getBrandById(entry.brand_id)"></app-entry-card>
   </ion-item-sliding>
 </ion-list>
