@@ -4,8 +4,9 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-entry-list',
   templateUrl: './entry-list.component.html',
   styleUrls: ['./entry-list.component.scss'],
+  standalone: true
 })
-export class EntryListComponent  implements OnInit {
+export class EntryListComponent implements OnInit {
 
   constructor() { }
 
