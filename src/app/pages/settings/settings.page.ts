@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonToolbar, IonList, IonItem, IonToggle, IonTitle } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonToolbar, IonList, IonItem, IonToggle, IonTitle]
 })
 export class SettingsPage implements OnInit {
+
+  darkmode: boolean = false
 
   constructor() { }
 
   ngOnInit() {
+    this.darkmode = Boolean(localStorage.getItem("darkmode") === "true")
+  }
+
+  toggleDarkmode(e: any) {
+    document.documentElement.classList.toggle("ion-palette-dark", e.detail.checked)
+    localStorage.setItem("darkmode", e.detail.checked)
   }
 
 }
