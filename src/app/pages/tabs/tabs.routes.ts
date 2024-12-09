@@ -9,22 +9,22 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('../screens/home/home.page').then((m) => m.HomePage),
+          import('../home/home.page').then((m) => m.HomePage),
       },
       {
         path: 'map',
         loadComponent: () =>
-          import('../screens/map/map.page').then((m) => m.MapPage),
+          import('../map/map.page').then((m) => m.MapPage),
       },
       {
         path: 'stats',
         loadComponent: () =>
-          import('../screens/stats/stats.page').then((m) => m.StatsPage),
+          import('../stats/stats.page').then((m) => m.StatsPage),
       },
       {
         path: 'settings',
         loadComponent: () =>
-          import('../screens/settings/settings.page').then((m) => m.SettingsPage)
+          import('../settings/settings.page').then((m) => m.SettingsPage)
       },
       {
         path: '',
