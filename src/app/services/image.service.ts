@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment.prod';
 import { LoadingController } from "@ionic/angular";
-import { Entry } from '../models/entry.model';
+import { Image } from '../models/image.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EntryService {
+export class ImageService {
 
   private supabase: SupabaseClient
 
@@ -19,18 +19,17 @@ export class EntryService {
     return this.loadingCtrl.create()
   }
 
-  async getAllEntries() {
+  async createEntry(base64: string): Promise<Image> {
     const { data, error } = await this.supabase
-      .from('entry')
-      .select('*')
-      .order('id')
+      .from('image')
+      .insert(
+        {
+          base64: base64
+        }
+      )
+      .select()
+      .single()
 
-    return data || []
-  }
-
-  async createEntry(formData: any) {
-    const { data, error } = await this.supabase
-      .from('entry')
-      .insert(formData)
+    return data;
   }
 }

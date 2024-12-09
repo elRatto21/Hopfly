@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EntryService } from 'src/app/services/entry.service';
 
 @Component({
   selector: 'app-entry-list',
@@ -8,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntryListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private entryService: EntryService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.entryService.getAllEntries().then((data) => {
+      console.log("entries:", data)
+    })
+  }
 
 }
