@@ -33,4 +33,11 @@ export class EntryService {
       .from('entry')
       .insert(formData)
   }
+
+  async deleteById(id: number) {
+    const { data, error } = await this.supabase
+      .from('entry')
+      .delete()
+      .eq('id', id)
+  }
 }
