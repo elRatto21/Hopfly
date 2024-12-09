@@ -1,3 +1,11 @@
-<p>
-  entry-list works!
-</p>
+<ion-list>
+  <ion-list-header>
+    <div>Your entries</div>
+    <div>
+      <ion-select label="Filter"></ion-select>
+    </div>
+  </ion-list-header>
+  <ion-item-sliding *ngFor="let entry of entries">
+    <app-entry-card [entry]="entry"></app-entry-card>
+  </ion-item-sliding>
+</ion-list>
