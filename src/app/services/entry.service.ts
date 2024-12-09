@@ -23,7 +23,7 @@ export class EntryService {
     const { data, error } = await this.supabase
       .from('entry')
       .select('*')
-      .order('id')
+      .order('created_at', { ascending: false });
 
     return data || []
   }

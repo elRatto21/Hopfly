@@ -32,4 +32,14 @@ export class ImageService {
 
     return data;
   }
+
+  async getImage(id: number) {
+    const { data, error } = await this.supabase
+      .from('image')
+      .select('base64')
+      .eq('id', id)
+      .single();
+
+    return data?.base64 || null
+  }
 }
