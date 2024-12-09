@@ -83,6 +83,7 @@ export class CreateEntryComponent implements OnInit {
     this.modal.dismiss(null, 'cancel');
     this.initForm();
     this.imageString = undefined
+    this.location = null
   }
 
   async submit() {
@@ -106,5 +107,6 @@ export class CreateEntryComponent implements OnInit {
   onWillDismiss(event: Event) {
     this.initForm();
     this.imageString = undefined
+    this.location = null;
   }
 }
