@@ -26,9 +26,9 @@ export class EntryListComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-    this.loadEntries();
-    this.loadBrands();
+  async ngOnInit() {
+    await this.loadBrands();
+    await this.loadEntries();
   }
 
   async loadEntries() {
@@ -45,7 +45,7 @@ export class EntryListComponent implements OnInit {
   }
 
   getBrandById(id: number) {
-    return this.brands.filter((brand) => brand.id == id)[0].name;
+    return this.brands.find((brand) => brand.id == id)?.name || '';
   }
 
   groupEntriesByDate() {
