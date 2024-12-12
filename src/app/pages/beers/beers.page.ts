@@ -6,13 +6,14 @@ import { EntryListComponent } from 'src/app/components/beers/entry-list/entry-li
 import { CreateEntryComponent } from "../../components/beers/create-entry/create-entry.component";
 import { addIcons } from 'ionicons';
 import { close } from 'ionicons/icons';
+import { QuickStatsComponent } from 'src/app/components/beers/quick-stats/quick-stats.component';
 
 @Component({
   selector: 'app-beers',
   templateUrl: './beers.page.html',
   styleUrls: ['./beers.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, EntryListComponent, CreateEntryComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, EntryListComponent, CreateEntryComponent, QuickStatsComponent]
 })
 export class BeersPage implements OnInit {
 
