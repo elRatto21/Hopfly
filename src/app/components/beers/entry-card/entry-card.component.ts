@@ -5,13 +5,14 @@ import { Entry } from 'src/app/models/entry.model';
 import { IonModal } from '@ionic/angular';
 import { ImageService } from 'src/app/services/image.service';
 import { EntryService } from 'src/app/services/entry.service';
+import { CreateEntryComponent } from "../create-entry/create-entry.component";
 
 @Component({
   selector: 'app-entry-card',
   templateUrl: './entry-card.component.html',
   styleUrls: ['./entry-card.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule]
+  imports: [IonicModule, CommonModule, CreateEntryComponent]
 })
 export class EntryCardComponent implements OnInit {
   @Input() entry!: Entry
