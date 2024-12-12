@@ -4,7 +4,7 @@ android {
     namespace "ionic.hopfly"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "ionic.hopfly"
+        applicationId "com.niklas.trapp.hopfly"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
