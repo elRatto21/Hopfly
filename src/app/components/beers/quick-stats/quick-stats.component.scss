@@ -1,0 +1,21 @@
+.stats-container {
+    display: flex;
+    width: 100dvw;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+
+    div {
+        background-color: rgb(226, 226, 226);
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 100px;
+    }
+    
+    span {
+        font-size: larger;
+    }
+}
