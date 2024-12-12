@@ -7,7 +7,7 @@
 </ion-item>
 
 <ion-item-options side="end">
-  <ion-item-option>
+  <ion-item-option [id]="'edit-' + entry.id">
     <ion-icon slot="icon-only" name="pencil"></ion-icon>
   </ion-item-option>
   <ion-item-option color="danger" [id]="'delete' + entry.id">
@@ -62,8 +62,11 @@
   </ng-template>
 </ion-modal>
 
-<ion-alert
-  [trigger]="'delete' + entry.id"
+<app-create-entry [trigger]="'edit-' + entry.id" [entry]="entry"></app-create-entry>
+
+<ion-alert 
+  [trigger]="'delete' + entry.id" 
   [header]="'Delete ' + brand + ' ' + entry.beer_name + '?'"
   [buttons]="alertButtons"
-></ion-alert>
+>
+</ion-alert>

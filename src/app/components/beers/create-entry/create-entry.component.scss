@@ -1,3 +1,17 @@
 ion-fab {
     margin-bottom: 55px;
 }
+
+::ng-deep {
+    .select-interface-option {
+        z-index: 20000 !important;
+    }
+
+    ion-select-popover {
+        z-index: 20000 !important;
+    }
+
+    .select-popover {
+        z-index: 20000 !important;
+    }
+}

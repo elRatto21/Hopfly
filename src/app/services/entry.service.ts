@@ -40,4 +40,11 @@ export class EntryService {
       .delete()
       .eq('id', id)
   }
+
+  async updateEntry(id: number, entry: Entry) {
+    const { data, error } = await this.supabase
+      .from('entry')
+      .update(entry)
+      .eq('id', id)
+  }
 }
