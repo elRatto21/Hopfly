@@ -33,12 +33,12 @@ export class MapComponent implements AfterViewInit {
   }
 
   async ngAfterViewInit() {
-    setTimeout(() => {
-      this.initializeMap();
+    setTimeout(async () => {
+      await this.initializeMap();
+      this.entries = await this.entryService.getAllEntries();
+      this.addEntryMarkers();
+      this.addUserMarker(await this.getUserLocation());
     }, 50)
-    this.entries = await this.entryService.getAllEntries();
-    this.addEntryMarkers();
-    this.addUserMarker(await this.getUserLocation());
   }
 
   private async initializeMap() {
