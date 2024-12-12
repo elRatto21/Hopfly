@@ -7,14 +7,10 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item lines="full">
-        <ion-toggle justify="space-between" (ionChange)="toggleDarkmode($event)" [checked]="darkmode">Dark Mode</ion-toggle>
+      <ion-icon name="moon"></ion-icon>
+      <ion-toggle justify="space-between" (ionChange)="toggleDarkmode($event)" [checked]="darkmode">Dark
+        Mode</ion-toggle>
     </ion-item>
-    <ion-item>
-      <ion-label>Daily Reminder at 20:00</ion-label>
-      <ion-toggle
-        [(ngModel)]="isDailyReminderEnabled"
-        (ionChange)="toggleDailyReminder($event)"
-      ></ion-toggle>
-    </ion-item>
+    <app-reminder-settings></app-reminder-settings>
   </ion-list>
 </ion-content>
