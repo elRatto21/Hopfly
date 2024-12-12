@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Entry } from 'src/app/models/entry.model';
 import { EntryService } from 'src/app/services/entry.service';
 import { IonicModule } from '@ionic/angular'
 import { addIcons } from 'ionicons';
@@ -51,6 +50,12 @@ export class EntryListComponent implements OnInit {
 
   groupEntriesByDate() {
 
+  }
+
+  async refresh(event: any) {
+    await this.loadEntries();
+    await this.loadBrands();
+    event.target.complete()
   }
 
 }
