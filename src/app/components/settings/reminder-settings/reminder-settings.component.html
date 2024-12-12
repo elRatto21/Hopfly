@@ -1,0 +1,40 @@
+<ion-item lines="full" detail id="reminders-button">
+  <ion-icon name="alarm"></ion-icon>
+  <ion-label>Reminders</ion-label>
+</ion-item>
+
+<ion-modal trigger="reminders-button">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Reminders</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="dismiss()">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class>
+      <ion-item>
+        <ion-toggle justify="between" [(ngModel)]="dailyAlarm" (ionChange)="toggleDaily($event)"
+          [checked]="dailyAlarm">Daily reminder</ion-toggle>
+      </ion-item>
+      <ion-item [disabled]="!dailyAlarm">
+        <ion-label>Reminder Time</ion-label>
+        <ion-datetime-button datetime="reminder-time"></ion-datetime-button>
+      </ion-item>
+      <ion-button (click)="testNoti()">test notification in one minute</ion-button>
+      <ion-button (click)="getNotis()">get notifications</ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime id="reminder-time" presentation="time" [(ngModel)]="selectedTime"
+      (ionChange)="onTimeChange($event)" [disabled]="!dailyAlarm">
+    </ion-datetime>
+  </ng-template>
+</ion-modal>
