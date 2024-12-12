@@ -42,4 +42,12 @@ export class ImageService {
 
     return data?.base64 || null
   }
+
+  async getImageCount() {
+    const { count, error } = await this.supabase
+      .from('image')
+      .select('*', { count: 'exact', head: true })
+
+    return count || 0
+  }
 }
