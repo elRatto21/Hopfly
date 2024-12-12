@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Geolocation, Position } from '@capacitor/geolocation';
 import * as L from 'leaflet';
 import { Entry } from 'src/app/models/entry.model';
 import { EntryService } from 'src/app/services/entry.service';
@@ -16,8 +17,6 @@ export class MapComponent implements AfterViewInit {
 
   private entries: Entry[] = [];
 
-  private defaultCenter: L.LatLngTuple = [47.508820319182774, 7.616206062342946];
-  private userMarker!: L.Marker;
   constructor(private entryService: EntryService) {
     const iconUrl = 'assets/leaflet/images/marker-icon.png';
     const shadowUrl = 'assets/leaflet/images/marker-shadow.png';
@@ -39,11 +38,13 @@ export class MapComponent implements AfterViewInit {
     }, 50)
     this.entries = await this.entryService.getAllEntries();
     this.addEntryMarkers();
+    this.addUserMarker(await this.getUserLocation());
   }
 
   private async initializeMap() {
+    const userLoc = await this.getUserLocation()
     this.map = L.map('map', {
-      center: this.defaultCenter,
+      center: [userLoc.latitude, userLoc.longitude],
       zoom: 15,
       zoomControl: false,
     });
@@ -60,7 +61,7 @@ export class MapComponent implements AfterViewInit {
   }
 
   private addEntryMarkers(): void {
-    this.entries.forEach(entry => {
+    this.entries.filter((entry) => entry.location != null).forEach(entry => {
       const marker = L.marker([entry.location.latitude, entry.location.longitude])
         .bindPopup(`<b>${entry.beer_name}</b>`)
         .addTo(this.map);
@@ -69,7 +70,18 @@ export class MapComponent implements AfterViewInit {
     });
   }
 
+  async addUserMarker(location: any) {
+    L.marker([location.latitude, location.longitude], { icon: this.createHomeIcon() })
+      .bindPopup(`<b>Your location</b>`)
+      .addTo(this.map);
+  }
 
+  async getUserLocation() {
+    const location: Position = await Geolocation.getCurrentPosition({
+      enableHighAccuracy: true
+    });
+    return location.coords;
+  }
 
   public centerMap(latitude: number, longitude: number, zoom: number = 13): void {
     this.map.setView([latitude, longitude], zoom);
@@ -78,6 +90,20 @@ export class MapComponent implements AfterViewInit {
   public clearMarkers(): void {
     this.markers.forEach(marker => marker.remove());
     this.markers = [];
+  }
+
+  createHomeIcon() {
+    const homeIconUrl = 'assets/leaflet/images/home-icon.png';
+    const iconHome = L.icon({
+      iconUrl: homeIconUrl,
+      shadowUrl: undefined,
+      iconSize: [50, 50],
+      iconAnchor: [25, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize: [41, 41]
+    })
+    return iconHome
   }
 
 }
