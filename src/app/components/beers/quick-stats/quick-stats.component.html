@@ -1,11 +1,8 @@
 <div class="stats-container">
-  <div>
+  <div *ngIf="beerAmount">
     <span>{{ beerAmount }}</span> Total Beers
   </div>
-  <div>
-    <span>{{ imageAmount }}</span> Images
-  </div>
-  <div>
+  <div *ngIf="favoriteBrand">
     <span>{{ favoriteBrand }}</span> Is Most Popular
   </div>
 </div>

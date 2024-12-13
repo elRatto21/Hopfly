@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Brand } from 'src/app/models/brand.model';
 import { Entry } from 'src/app/models/entry.model';
@@ -9,7 +10,8 @@ import { ImageService } from 'src/app/services/image.service';
   selector: 'app-quick-stats',
   templateUrl: './quick-stats.component.html',
   styleUrls: ['./quick-stats.component.scss'],
-  standalone: true
+  standalone: true,
+  imports: [CommonModule]
 })
 export class QuickStatsComponent  implements OnInit {
 
