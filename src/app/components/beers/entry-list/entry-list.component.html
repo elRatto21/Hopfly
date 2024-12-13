@@ -4,12 +4,14 @@
 
 <ion-list>
   <ion-list-header>
-    <div>Your entries</div>
-    <div>
-      <ion-select label="Filter"></ion-select>
+    <div class="header">
+      <div>Your entries</div>
+      <div>
+        <ion-select label="Filter"></ion-select>
+      </div>
     </div>
   </ion-list-header>
   <ion-item-sliding *ngFor="let entry of entries">
-    <app-entry-card [entry]="entry" [brand]="getBrandById(entry.brand_id)"></app-entry-card>
+    <app-entry-card [entry]="entry" [brand]="getBrandById(entry.brand_id)" (entryDeleted)="refreshEntries()"></app-entry-card>
   </ion-item-sliding>
 </ion-list>

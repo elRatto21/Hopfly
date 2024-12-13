@@ -1,8 +1,12 @@
 <ion-item detail lines="full" [id]="entry.id">
+  <ion-badge color="dark">
+    {{ formatDate(entry.created_at) }}
+  </ion-badge>
   <ion-label>
     <span>{{ brand }} </span>
     <span>{{ entry.beer_name }}</span>
   </ion-label>
+
   <ion-icon *ngIf="entry.image_id" name="image" size="icon-only"></ion-icon>
 </ion-item>
 
@@ -64,9 +68,6 @@
 
 <app-create-entry [trigger]="'edit-' + entry.id" [entry]="entry"></app-create-entry>
 
-<ion-alert 
-  [trigger]="'delete' + entry.id" 
-  [header]="'Delete ' + brand + ' ' + entry.beer_name + '?'"
-  [buttons]="alertButtons"
->
+<ion-alert [trigger]="'delete' + entry.id" [header]="'Delete ' + brand + ' ' + entry.beer_name + '?'"
+  [buttons]="alertButtons">
 </ion-alert>

@@ -1,8 +1,10 @@
-ion-list-header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100dvw;
+    width: 98dvw;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 ion-select {

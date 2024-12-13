@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
@@ -16,12 +16,17 @@ import { QuickStatsComponent } from 'src/app/components/beers/quick-stats/quick-
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, EntryListComponent, CreateEntryComponent, QuickStatsComponent]
 })
 export class BeersPage implements OnInit {
+  @ViewChild(EntryListComponent) entryList!: EntryListComponent;
 
   constructor() {
     addIcons({ close })
-   }
+  }
 
   ngOnInit() {
+  }
+
+  async refreshEntries() {
+    await this.entryList.refreshEntries();
   }
 
 }

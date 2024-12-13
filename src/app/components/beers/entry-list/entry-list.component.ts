@@ -58,4 +58,9 @@ export class EntryListComponent implements OnInit {
     event.target.complete()
   }
 
+  public async refreshEntries() {
+    await this.loadEntries();
+    await this.loadBrands();
+  }
+
 }

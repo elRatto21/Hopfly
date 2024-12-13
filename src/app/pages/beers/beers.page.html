@@ -6,6 +6,6 @@
 
 <ion-content [fullscreen]="true">
   <app-quick-stats></app-quick-stats>
-  <app-entry-list></app-entry-list>
-  <app-create-entry trigger="fab-create"></app-create-entry>
+  <app-entry-list #entryList></app-entry-list>
+  <app-create-entry trigger="fab-create" (entryCreated)="refreshEntries()"></app-create-entry>
 </ion-content>

@@ -1,6 +1,6 @@
 // src/app/components/create-entry/create-entry.component.ts
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { add, close, camera, location, checkmark } from 'ionicons/icons';
 import { IonModal } from '@ionic/angular';
@@ -12,6 +12,7 @@ import { Brand } from '../../../models/brand.model';
 import { BrandService } from 'src/app/services/brand.service';
 import { ImageService } from 'src/app/services/image.service';
 import { EntryService } from 'src/app/services/entry.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-create-entry',
@@ -24,6 +25,7 @@ export class CreateEntryComponent implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
   @Input() entry?: any; // For edit mode
   @Input() trigger?: string; // Modal trigger ID
+  @Output() entryCreated = new EventEmitter<void>();
 
   beerForm!: FormGroup;
   location: { latitude: number; longitude: number } | null = null;
@@ -35,7 +37,8 @@ export class CreateEntryComponent implements OnInit {
     private fb: FormBuilder,
     private brandService: BrandService,
     private imageService: ImageService,
-    private entryService: EntryService
+    private entryService: EntryService,
+    private toastService: ToastService
   ) {
     addIcons({ add, close, camera, location, checkmark });
   }
@@ -116,10 +119,13 @@ export class CreateEntryComponent implements OnInit {
     if (this.beerForm.valid) {
       if (this.isEditMode) {
         await this.entryService.updateEntry(this.entry.id, formData);
+        this.toastService.createToast("Entry updated successfully")
       } else {
         await this.entryService.createEntry(formData);
+        this.toastService.createToast("Entry created successfully")
       }
-      this.modal.dismiss(formData, 'confirm');
+      await this.modal.dismiss(formData, 'confirm');
+      this.entryCreated.emit();
     }
   }
 
