@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { addIcons } from 'ionicons';
-import { alarm, contrast, moon, sunny } from 'ionicons/icons';
+import { alarm, contrast, informationCircle, moon, sunny } from 'ionicons/icons';
 import { ReminderSettingsComponent } from "../../components/settings/reminder-settings/reminder-settings.component";
 
 @Component({
@@ -20,7 +20,7 @@ export class SettingsPage implements OnInit {
   darkmode: boolean = false
 
   constructor() { addIcons({
-    alarm, moon, sunny
+    alarm, moon, sunny, informationCircle
   }) }
 
   async ngOnInit() {
