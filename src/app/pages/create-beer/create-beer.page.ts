@@ -27,7 +27,6 @@ import { Router } from '@angular/router';
   imports: [IonicModule, ReactiveFormsModule, CommonModule]
 })
 export class BeersPage implements OnInit {
-  @ViewChild(IonModal) modal!: IonModal;
   @Input() entry?: any; // For edit mode
   @Input() trigger?: string; // Modal trigger ID
   @Output() entryCreated = new EventEmitter<void>();
@@ -105,11 +104,6 @@ export class BeersPage implements OnInit {
     }
   }
 
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
-    this.reset();
-  }
-
   async submit() {
     const formData = { ...this.beerForm.value };
 
@@ -130,7 +124,6 @@ export class BeersPage implements OnInit {
         await this.entryService.createEntry(formData);
         this.toastService.createToast("Entry created successfully")
       }
-      await this.modal.dismiss(formData, 'confirm');
       this.entryCreated.emit();
       this.router.navigate(['/beers']);
     }
