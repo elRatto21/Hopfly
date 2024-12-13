@@ -43,7 +43,7 @@ Hopfly is a Beer-Tracker app which you can use to track your own consumption and
    ```bash
    ionic serve
    ```
-
+ 
 ### Build android APK
 
 ```bash
