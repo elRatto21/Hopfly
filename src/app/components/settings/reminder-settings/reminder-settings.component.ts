@@ -11,7 +11,7 @@ import { IonModal, IonItem, IonIcon, IonDatetime, IonToggle, IonButton, IonTitle
   templateUrl: './reminder-settings.component.html',
   styleUrls: ['./reminder-settings.component.scss'],
   standalone: true,
-  imports: [IonDatetimeButton, IonModal, IonItem, IonDatetime, IonDatetimeButton, IonToggle, IonContent, IonList, IonIcon, IonButton, IonTitle, IonLabel, IonHeader, IonToolbar, IonButtons, FormsModule, CommonModule]
+  imports: [IonDatetimeButton, IonModal, IonItem, IonDatetime, IonDatetimeButton, IonToggle, IonContent, IonIcon, IonButton, IonTitle, IonLabel, IonHeader, IonToolbar, IonButtons, FormsModule, CommonModule]
 })
 export class ReminderSettingsComponent implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
@@ -78,17 +78,17 @@ export class ReminderSettingsComponent implements OnInit {
     this.modal.dismiss();
   }
 
-  async testNoti() {
-    const oneMinuteFromNow = new Date();
-    oneMinuteFromNow.setSeconds(oneMinuteFromNow.getSeconds() + 5);
+  async beeroclock() {
+    const thirtySecs = new Date();
+    thirtySecs.setSeconds(thirtySecs.getSeconds() + 30);
 
     await LocalNotifications.schedule({
       notifications: [
         {
           id: 2,
-          title: "Test notification",
-          body: "this is a simple test",
-          schedule: { at: oneMinuteFromNow }
+          title: "Important!!!",
+          body: "Beer contains >90% water, so down that pint to do something good for your body. 🍺",
+          schedule: { at: thirtySecs }
         }
       ]
     })
@@ -129,7 +129,7 @@ export class ReminderSettingsComponent implements OnInit {
         {
           id: 1,
           title: "Still alive? 🤨",
-          body: "You haven't created an entry in a while 😞 Why don't you crack open a cold one with the bois? 🍻😊",
+          body: "Come back 😞 Why don't you crack open a cold one with the bois? 🍻😊",
           schedule: {
             on: {
               hour: hours,
