@@ -24,7 +24,7 @@
         </ion-item>
 
         <ion-item lines="full">
-          <ion-select label="Brand" formControlName="brand_id" required class="select-popover">
+          <ion-select label="Brand" formControlName="brand_id" required class="select-popover" interface="action-sheet">
             <ion-select-option *ngFor="let brand of beerBrands" [value]="brand.id">
               {{brand.name}}
             </ion-select-option>
