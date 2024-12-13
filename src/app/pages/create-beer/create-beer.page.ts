@@ -1,4 +1,8 @@
-// src/app/components/create-entry/create-entry.component.ts
+import { FormsModule } from '@angular/forms';
+import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { EntryListComponent } from 'src/app/components/beers/entry-list/entry-list.component';
+import { CreateEntryComponent } from "../../components/beers/create-entry/create-entry.component";
+import { QuickStatsComponent } from 'src/app/components/beers/quick-stats/quick-stats.component';
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { addIcons } from 'ionicons';
@@ -8,20 +12,20 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 import { CommonModule } from '@angular/common';
-import { Brand } from '../../../models/brand.model';
+import { Brand } from '../../models/brand.model';
 import { BrandService } from 'src/app/services/brand.service';
 import { ImageService } from 'src/app/services/image.service';
 import { EntryService } from 'src/app/services/entry.service';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
-  selector: 'app-create-entry',
-  templateUrl: './create-entry.component.html',
-  styleUrls: ['./create-entry.component.scss'],
+  selector: 'app-create-beer',
+  templateUrl: './create-beer.page.html',
+  styleUrls: ['./create-beer.page.scss'],
   standalone: true,
   imports: [IonicModule, ReactiveFormsModule, CommonModule]
 })
-export class CreateEntryComponent implements OnInit {
+export class BeersPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
   @Input() entry?: any; // For edit mode
   @Input() trigger?: string; // Modal trigger ID
