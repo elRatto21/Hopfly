@@ -17,6 +17,7 @@ import { BrandService } from 'src/app/services/brand.service';
 import { ImageService } from 'src/app/services/image.service';
 import { EntryService } from 'src/app/services/entry.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-beer',
@@ -42,7 +43,8 @@ export class BeersPage implements OnInit {
     private brandService: BrandService,
     private imageService: ImageService,
     private entryService: EntryService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router,
   ) {
     addIcons({ add, close, camera, location, checkmark });
   }
@@ -130,6 +132,7 @@ export class BeersPage implements OnInit {
       }
       await this.modal.dismiss(formData, 'confirm');
       this.entryCreated.emit();
+      this.router.navigate(['/beers']);
     }
   }
 
