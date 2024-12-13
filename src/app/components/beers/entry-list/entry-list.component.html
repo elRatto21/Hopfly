@@ -5,9 +5,17 @@
 <ion-list>
   <ion-list-header>
     <div class="header">
-      <div>Your entries</div>
+      <div class="title">Your entries</div>
       <div>
-        <ion-select label="Filter"></ion-select>
+        <ion-select label="Sort by" interface="action-sheet" (ionChange)="sortEntries($event)">
+          <ion-select-option value="none">None</ion-select-option>
+          <ion-select-option value="date-asc">Date ↑</ion-select-option>
+          <ion-select-option value="date-desc">Date ↓</ion-select-option>
+          <ion-select-option value="brand-asc">Brand ↑</ion-select-option>
+          <ion-select-option value="brand-desc">Brand ↓</ion-select-option>
+          <ion-select-option value="size-asc">Size ↑</ion-select-option>
+          <ion-select-option value="size-desc">Size ↓</ion-select-option>
+        </ion-select>
       </div>
     </div>
   </ion-list-header>
